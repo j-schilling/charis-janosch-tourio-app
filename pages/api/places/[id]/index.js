@@ -6,19 +6,15 @@ export default async function handler(request, response) {
   const { id } = request.query;
 
   if (request.method === "GET") {
-    const place = await Place.findById(id).populate("comments")
-    console.log("----- place id api file:", place)
-    // const comment = place?.comments;
-    // const allCommentIds = comment?.map((comment) => comment.$oid) || [];
-    // const comments = db_comments.filter((comment) =>
-    //   allCommentIds.includes(comment._id.$oid)
-    // );
+    const place = await Place.findById(id).populate("comments");
+    console.log("----- place id api file:", place);
 
     if (!place) {
       return response.status(404).json({ status: "Not found" });
     }
     response.status(200).json(place);
   }
+
 
 
   if (request.method === "PATCH") {
@@ -29,8 +25,11 @@ export default async function handler(request, response) {
     if (!updatedPlaceData) {
       return response.status(404).json({ status: "Could not edit/update the place" })
     }
-    response.status(200).json({ status: "updated/edited this Place" })
+    response.status(200).json({ status: "updated/edited this Place" })}
+
+  if (request.method === "DELETE") {
+    await Place.findByIdAndDelete(id);
+    return response.status(200).json({ status: "Place successfully deleted" });
+
   }
 }
-
-
