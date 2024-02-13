@@ -3,6 +3,16 @@ import Link from "next/link";
 import useSWR from "swr";
 import Form from "../../../components/Form.js";
 import { StyledLink } from "../../../components/StyledLink.js";
+import styled from "styled-components";
+
+
+const StyledBackLink = styled(StyledLink)`
+  justify-self: flex-start;
+  position:fixed;
+  top:18px;
+  z-index: 101;
+`;
+
 
 export default function EditPage() {
   const router = useRouter();
@@ -33,7 +43,7 @@ export default function EditPage() {
     <>
       <h2 id="edit-place">Edit Place</h2>
       <Link href={`/places/${id}`} passHref legacyBehavior>
-        <StyledLink justifySelf="start">back</StyledLink>
+        <StyledBackLink justifySelf="start">back</StyledBackLink>
       </Link>
       <Form onSubmit={editPlace} formName={'edit-place'} defaultData={placeData} />
     </>

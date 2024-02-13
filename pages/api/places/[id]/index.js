@@ -5,6 +5,7 @@ export default async function handler(request, response) {
   await dbConnect();
   const { id } = request.query;
 
+
   if (request.method === "GET") {
     const place = await Place.findById(id).populate("comments");
     console.log("----- place id api file:", place);
@@ -25,7 +26,10 @@ export default async function handler(request, response) {
     if (!updatedPlaceData) {
       return response.status(404).json({ status: "Could not edit/update the place" })
     }
-    response.status(200).json({ status: "updated/edited this Place" })}
+    response.status(200).json({ status: "updated/edited this Place" })
+  }
+
+
 
   if (request.method === "DELETE") {
     await Place.findByIdAndDelete(id);

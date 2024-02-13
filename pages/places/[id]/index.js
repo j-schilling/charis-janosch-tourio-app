@@ -7,10 +7,24 @@ import { StyledButton } from "../../../components/StyledButton.js";
 import { StyledImage } from "../../../components/StyledImage.js";
 import Comments from "../../../components/Comments.js";
 
+const StyledBackLink = styled(StyledLink)`
+  justify-self: flex-start;
+  position:fixed;
+  top:18px;
+  z-index: 101;
+`;
+
+
 const ImageContainer = styled.div`
   position: relative;
   height: 15rem;
+  margin: 10px;
 `;
+
+const StyledTitle = styled.h2`
+margin:15px;
+text-align: center;
+`
 
 const ButtonContainer = styled.section`
   display: flex;
@@ -20,14 +34,26 @@ const ButtonContainer = styled.section`
   & > * {
     flex-grow: 1;
     text-align: center;
+    margin:40px;
+    margin-block: 10px;
   }
 `;
 
 const StyledLocationLink = styled(StyledLink)`
-  text-align: center;
-  background-color: white;
-  border: 3px solid lightsalmon;
+  text-align: left;
+  background-color: #D9CF9C;
+  color: black;
+  font-size:13px;
+  width: 40%;
+  padding: 10px;
+  margin: 10px;
+  justify-self: center;
 `;
+
+const StyledBorder = styled.div`
+border: black solid 1px;
+align-items: center;
+`
 
 export default function DetailsPage() {
   const router = useRouter();
@@ -50,7 +76,7 @@ export default function DetailsPage() {
   return (
     <>
       <Link href={"/"} passHref legacyBehavior>
-        <StyledLink justifySelf="start">back</StyledLink>
+        <StyledBackLink>⬅</StyledBackLink>
       </Link>
       <ImageContainer>
         <StyledImage
@@ -63,11 +89,14 @@ export default function DetailsPage() {
           alt=""
         />
       </ImageContainer>
-      <h2>
-        {place.name}, {place.location}
-      </h2>
+      <StyledTitle>
+        {place.name}
+        <br />
+        📍 {place.location}
+      </StyledTitle>
       <Link href={place.mapURL} passHref legacyBehavior>
-        <StyledLocationLink>Location on Google Maps</StyledLocationLink>
+        <StyledLocationLink> 📍open in Google Maps
+        </StyledLocationLink>
       </Link>
       <p>{place.description}</p>
       <ButtonContainer>
@@ -82,6 +111,7 @@ export default function DetailsPage() {
           Delete
         </StyledButton>
       </ButtonContainer>
+      <StyledBorder />
       <Comments locationName={place.name} comments={place.comments} />
     </>
   );
