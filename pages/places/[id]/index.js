@@ -9,11 +9,10 @@ import Comments from "../../../components/Comments.js";
 
 const StyledBackLink = styled(StyledLink)`
   justify-self: flex-start;
-  position:fixed;
-  top:18px;
+  position: fixed;
+  top: 18px;
   z-index: 101;
 `;
-
 
 const ImageContainer = styled.div`
   position: relative;
@@ -22,9 +21,9 @@ const ImageContainer = styled.div`
 `;
 
 const StyledTitle = styled.h2`
-margin:15px;
-text-align: center;
-`
+  margin: 15px;
+  text-align: center;
+`;
 
 const ButtonContainer = styled.section`
   display: flex;
@@ -34,16 +33,16 @@ const ButtonContainer = styled.section`
   & > * {
     flex-grow: 1;
     text-align: center;
-    margin:40px;
+    margin: 40px;
     margin-block: 10px;
   }
 `;
 
 const StyledLocationLink = styled(StyledLink)`
   text-align: left;
-  background-color: #D9CF9C;
+  background-color: #d9cf9c;
   color: black;
-  font-size:13px;
+  font-size: 13px;
   width: 40%;
   padding: 10px;
   margin: 10px;
@@ -51,9 +50,9 @@ const StyledLocationLink = styled(StyledLink)`
 `;
 
 const StyledBorder = styled.div`
-border: black solid 1px;
-align-items: center;
-`
+  border: black solid 1px;
+  align-items: center;
+`;
 
 export default function DetailsPage() {
   const router = useRouter();
@@ -76,16 +75,16 @@ export default function DetailsPage() {
   }
 
   async function addComment(commentData) {
-    console.log("commentData on DetailsPage [id].index.js", commentData)
+    console.log("commentData on DetailsPage [id].index.js", commentData);
     const response = await fetch(`/api/places/${id}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(commentData)
+      body: JSON.stringify(commentData),
     });
     if (response.ok) {
-      mutate()
+      mutate();
     }
   }
 
@@ -111,8 +110,7 @@ export default function DetailsPage() {
         📍 {place.location}
       </StyledTitle>
       <Link href={place.mapURL} passHref legacyBehavior>
-        <StyledLocationLink> 📍open in Google Maps
-        </StyledLocationLink>
+        <StyledLocationLink>📍open in Google Maps</StyledLocationLink>
       </Link>
       <p>{place.description}</p>
       <ButtonContainer>

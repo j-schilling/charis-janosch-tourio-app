@@ -2,12 +2,11 @@ import styled from "styled-components";
 import { Input, Label } from "./Form";
 import { StyledButton } from "./StyledButton.js";
 
-
 const StyledArticle = styled.article`
-display: column;
-margin: 15px;
-justify-items: left;
-  `;
+  display: column;
+  margin: 15px;
+  justify-items: left;
+`;
 
 const FormCommentContainer = styled.form`
   display: grid;
@@ -16,20 +15,18 @@ const FormCommentContainer = styled.form`
 
   box-sizing: border-box;
   border-radius: 20px;
-  padding:15px;
+  padding: 15px;
   z-index: 1;
   background-color: rgba(213, 202, 235, 0.6);
-  margin-block:10px;
+  margin-block: 10px;
 `;
-
 
 const StyledFormCommentTitle = styled.p`
-text-align: left;
-margin: 5px;
-color:black;
-z-index: 5;
+  text-align: left;
+  margin: 5px;
+  color: black;
+  z-index: 5;
 `;
-
 
 const Textarea = styled.textarea`
   font-family: inherit;
@@ -39,8 +36,8 @@ const Textarea = styled.textarea`
 `;
 
 const StyledCommentsList = styled.div`
-box-sizing: border-box;
-z-index: 1;
+  box-sizing: border-box;
+  z-index: 1;
 
   position: relative;
   font-family: sans-serif;
@@ -50,7 +47,7 @@ z-index: 1;
   background-color: rgba(213, 202, 235, 0.6);
   border-radius: 40px;
   padding: 18px;
-  padding-top:3px;
+  padding-top: 3px;
   text-align: left;
   color: #000;
   margin-bottom: 45px; /* Add margin bottom to create space for the speech bubble */
@@ -70,20 +67,18 @@ z-index: 1;
   }
 `;
 
-
-
-export default function Comments({ onSubmit, placeIdForComment, locationName, comments }) {
-
-
+export default function Comments({
+  onSubmit,
+  placeIdForComment,
+  locationName,
+  comments,
+}) {
   function handleSubmitComment(e) {
     e.preventDefault();
-    const formData = new FormData(e.target)
-    const commentData = Object.fromEntries(formData)
+    const formData = new FormData(e.target);
+    const commentData = Object.fromEntries(formData);
     onSubmit(commentData);
-    console.log("----comment Data, COmments Component:", commentData)
-
-
-
+    e.target.reset();
   }
 
   return (
@@ -93,13 +88,16 @@ export default function Comments({ onSubmit, placeIdForComment, locationName, co
         <Label htmlFor="name">Your Name</Label>
         <Input type="text" name="name" placeholder="your name" />
         <Label htmlFor="comment">Your Comment</Label>
-        <Textarea type="text"
+        <Textarea
+          type="text"
           name="comment"
           placeholder="comment here..."
           cols="30"
           rows="5"
         />
-        <Input type="hidden" name="placeIdForComment"
+        <Input
+          type="hidden"
+          name="placeIdForComment"
           value={placeIdForComment}
         />
         <StyledButton type="submit">Send</StyledButton>
