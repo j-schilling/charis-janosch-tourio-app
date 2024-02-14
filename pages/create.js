@@ -6,6 +6,9 @@ import { StyledLink } from "../components/StyledLink.js";
 
 const StyledBackLink = styled(StyledLink)`
   justify-self: flex-start;
+  position:fixed;
+  top:18px;
+  z-index: 101;
 `;
 
 export default function CreatePlacePage() {
@@ -27,10 +30,10 @@ export default function CreatePlacePage() {
 
   return (
     <>
-      <h2 id="add-place">Add Place</h2>
       <Link href="/" passHref legacyBehavior>
-        <StyledBackLink>back</StyledBackLink>
+        <StyledBackLink>⬅</StyledBackLink>
       </Link>
+      <h2 id="add-place">Add Place</h2>
       <Form onSubmit={handleAddPlace} formName={"add-place"} />
     </>
   );

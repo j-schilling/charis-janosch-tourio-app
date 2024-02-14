@@ -3,20 +3,63 @@ import styled from "styled-components";
 import { StyledImage } from "./StyledImage.js";
 
 const Article = styled.article`
-  border: 5px solid black;
   border-radius: 0.8rem;
   padding: 0.5rem;
+  z-index: 1;
+  background-color: rgba(213, 202, 235, 0.35);
 `;
+const Figure = styled.figure`
+  ${'' /* position: relative; */}
+  border-box: box-sizing;
+  margin: 2px;
+  border:1px;
+  padding: 3px;
+  border-radius: 0.8rem;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  `;
 
 const ImageContainer = styled.div`
-  position: relative;
+  ${'' /* position: relative; */}
+  z-index: -1;
+  border-radius: 0.8rem;
+
   height: 10rem;
+  margin: 5px;
 `;
 
-const Figure = styled.figure`
-  position: relative;
-  margin: 0;
+const StyledCaptionContainer = styled.div`
+ display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+`
+
+
+const StyledPlace = styled.p`
+text-align: left;
+margin: 5px;
+padding:5px;
+font-size:20px;
+font-family: Comic Sans MS;
+font-weight: 900;
+color:white;
+z-index: 5;
 `;
+
+const StyledLocation = styled.p`
+text-align: right;
+margin: 5px;
+padding:5px;
+font-size:15px;
+font-family: Comic Sans MS;
+font-weight: 900;
+color:white;
+z-index: 5;
+
+`
 
 const Anchor = styled.a`
   &::after {
@@ -56,9 +99,11 @@ export default function Card({ name, image, location, id }) {
             alt=""
           />
         </ImageContainer>
-        <figcaption>{name}</figcaption>
+        <StyledCaptionContainer>
+          <StyledPlace>{name}</StyledPlace>
+          <StyledLocation>📍 {location}</StyledLocation>
+        </StyledCaptionContainer>
       </Figure>
-      <p>Location: {location}</p>
       <Link href={`places/${id}`} passHref legacyBehavior>
         <Anchor>
           <ScreenReaderOnly>More Info</ScreenReaderOnly>

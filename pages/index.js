@@ -11,6 +11,8 @@ const List = styled.ul`
   align-items: center;
   gap: 1rem;
   padding-left: 0;
+  margin: 15px;
+
 `;
 
 const ListItem = styled.li`
@@ -18,9 +20,20 @@ const ListItem = styled.li`
   width: 100%;
 `;
 const FixedLink = styled(StyledLink)`
+z-index: 100;
   position: fixed;
   bottom: 50px;
   right: 50px;
+  font-size: 50px;
+  width:60px;
+  height:60px;
+  padding:1px;
+  text-align:center;
+  margin:auto;
+
+  border-radius: 500px;
+  box-shadow: 2px 2px 15px 0.5px RGB(177, 156, 217);
+
 `;
 export default function Home() {
   const { data } = useSWR("/api/places", { fallbackData: [] });
@@ -42,7 +55,7 @@ export default function Home() {
         })}
       </List>
       <Link href="/create" passHref legacyBehavior>
-        <FixedLink>+ place</FixedLink>
+        <FixedLink>+</FixedLink>
       </Link>
     </>
   );
