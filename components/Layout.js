@@ -9,6 +9,7 @@ const Main = styled.main`
   padding: 0.5rem;
   position: relative;
   width: 100%;
+justify-content: center;
 `;
 
 export default function Layout({ children }) {

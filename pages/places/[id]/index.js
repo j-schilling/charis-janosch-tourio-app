@@ -63,14 +63,16 @@ export default function DetailsPage() {
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
   async function handleDeletePlace() {
-    const response = await fetch(`/api/places/${id}`, {
-      method: "DELETE",
-    });
-    if (response.ok) {
-      await response.json(router.push("/"));
-    } else {
-      console.error(response.status);
-    }
+    if (window.confirm(`Do you really want to delete the beautiful destination "${place.name}"?`)) {
+      const response = await fetch(`/api/places/${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        await response.json(router.push("/"));
+      } else {
+        console.error(response.status);
+      }
+    } else return;
   }
 
   async function addComment(commentData) {
