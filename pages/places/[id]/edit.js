@@ -43,7 +43,7 @@ export default function EditPage() {
     <>
       <h2 id="edit-place">Edit Place</h2>
       <Link href={`/places/${id}`} passHref legacyBehavior>
-        <StyledBackLink justifySelf="start">back</StyledBackLink>
+        <StyledBackLink justifySelf="start">⬅  cancel edit</StyledBackLink>
       </Link>
       <Form onSubmit={editPlace} formName={'edit-place'} defaultData={placeData} />
     </>
