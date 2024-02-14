@@ -7,7 +7,7 @@ import { StyledLink } from "../components/StyledLink.js";
 const List = styled.ul`
   list-style: none;
   display: flex;
-  ${'' /* flex-direction: column; */}
+  /* flex-direction: row-reverse; */
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <>
       <List role="list">
-        {data.toReversed().map((place) => {
+        {data.map((place) => {
           return (
             <ListItem key={place.id}>
               <Card
