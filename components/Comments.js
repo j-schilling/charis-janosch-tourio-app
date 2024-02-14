@@ -2,11 +2,12 @@ import styled from "styled-components";
 import { Input, Label } from "./Form";
 import { StyledButton } from "./StyledButton.js";
 
+
 const StyledArticle = styled.article`
-  display: column;
-  margin: 15px;
-  justify-items: left;
-`;
+display: column;
+margin: 15px;
+justify-items: left;
+  `;
 
 const FormCommentContainer = styled.form`
   display: grid;
@@ -36,35 +37,6 @@ const Textarea = styled.textarea`
   border-radius: 0.5rem;
   padding: 0.5rem;
 `;
-
-
-// const StyledCommentsList = styled.div`
-//   box-sizing: border-box;
-//   border-radius: 20px;
-//   padding:15px;
-//   z-index: 1;
-//   background-color: rgba(213, 202, 235, 0.6);
-//   margin-block:10px;
-//   width: 300px;
-//   border-radius: 40px;
-//   padding: 24px;
-//   text-align: center;
-//   position: relative;
-
-// &::before {
-//     content: "";
-//     width: 0px;
-//     height: 0px;
-//     position: absolute;
-//     border-left: 24px solid #fff;
-//     border-right: 12px solid transparent;
-//     border-top: 12px solid #fff;
-//     border-bottom: 20px solid transparent;
-//     left: 32px;
-//     bottom: -24px;
-//     background-color: rgba(213, 202, 235, 0.6);
-//     }
-// `
 
 const StyledCommentsList = styled.div`
 box-sizing: border-box;
@@ -100,23 +72,18 @@ z-index: 1;
 
 
 
-export default function Comments({ locationName, comments }) {
-  const Article = styled.article`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 5px solid black;
-    border-radius: 0.8rem;
-    padding: 0.5rem;
-    text-align: center;
-    p {
-      border-bottom: solid 1px black;
-      padding: 20px;
-    }
-  `;
+export default function Comments({ onSubmit, locationName, comments }) {
+
 
   function handleSubmitComment(e) {
     e.preventDefault();
+    const formData = new FormData(e.target)
+    const commentData = Object.fromEntries(formData)
+    onSubmit(commentData);
+    console.log("----comment Data, COmments Component:", commentData)
+
+
+
   }
 
   return (
