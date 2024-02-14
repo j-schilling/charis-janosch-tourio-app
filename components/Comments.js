@@ -72,7 +72,7 @@ z-index: 1;
 
 
 
-export default function Comments({ onSubmit, locationName, comments }) {
+export default function Comments({ onSubmit, placeIdForComment, locationName, comments }) {
 
 
   function handleSubmitComment(e) {
@@ -98,6 +98,9 @@ export default function Comments({ onSubmit, locationName, comments }) {
           placeholder="comment here..."
           cols="30"
           rows="5"
+        />
+        <Input type="hidden" name="placeIdForComment"
+          value={placeIdForComment}
         />
         <StyledButton type="submit">Send</StyledButton>
       </FormCommentContainer>

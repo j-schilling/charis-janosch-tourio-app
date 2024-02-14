@@ -43,7 +43,12 @@ export default async function handler(request, response) {
 
     try {
       const commentData = request.body
-      await Comment.create(commentData)
+      // commentData has name, comment, placeIdForComment
+      const newComment = await Comment.create(commentData)
+      const placeWithNewComment = await Place.findById(commentData.placeIdForComment)
+      placeWithNewComment.comments.push(newComment)
+      await placeWithNewComment.save()
+
       return response.status(201).json({ status: "added Comment successfully" })
     } catch (error) {
       console.error(error)
