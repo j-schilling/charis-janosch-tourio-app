@@ -24,7 +24,7 @@ export const Textarea = styled.textarea`
 
 export const Label = styled.label`
   font-weight: bold;
-  font-size:12px;
+  font-size: 12px;
 `;
 
 export default function Form({ onSubmit, formName, defaultData }) {
